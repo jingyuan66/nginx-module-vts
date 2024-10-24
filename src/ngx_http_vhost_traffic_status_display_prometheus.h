@@ -204,9 +204,9 @@
     "nginx_vts_upstream_request_seconds{upstream=\"%V\","                      \
     "backend=\"%V\"} %.3f\n"                                                   \
     "nginx_vts_upstream_response_seconds_total{upstream=\"%V\","               \
-    "backend=\"%V\"} %.3f\n"                                                   \
+    "backend=\"%V\"} %.9f\n"                                                   \
     "nginx_vts_upstream_response_seconds{upstream=\"%V\","                     \
-    "backend=\"%V\"} %.3f\n"
+    "backend=\"%V\"} %.9f\n"
 
 #define NGX_HTTP_VHOST_TRAFFIC_STATUS_PROMETHEUS_FMT_UPSTREAM_HISTOGRAM_BUCKET \
     "nginx_vts_upstream_%V_duration_seconds_bucket{upstream=\"%V\","           \
