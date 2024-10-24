@@ -340,10 +340,10 @@ ngx_http_vhost_traffic_status_upstream_response_time(ngx_http_request_t *r)
         if (state[i].status) {
 
 #if !defined(nginx_version) || nginx_version < 1009001
-            ms += (ngx_msec_int_t)
-                  (state[i].response_sec * 1000 + state[i].response_msec);
+            ms += (ngx_usec_int_t)
+                  (state[i].response_sec * 1000000 + state[i].response_msec * 1000);
 #else
-            ms += state[i].response_time;
+            ms += state[i].response_time * 1000;
 #endif
 
         }
@@ -642,7 +642,7 @@ ngx_http_vhost_traffic_status_average_method(ngx_conf_t *cf, ngx_command_t *cmd,
 
     /* second argument process */
     if (cf->args->nelts == 3) {
-        rc = ngx_parse_time(&value[2], 0);
+        rc = ngx_parse_time(&value[2], 0);   
         if (rc == NGX_ERROR) {
             ngx_conf_log_error(NGX_LOG_EMERG, cf, 0, "invalid parameter \"%V\"", &value[2]);
             goto invalid;
